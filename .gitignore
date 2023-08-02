@@ -1,0 +1,6 @@
+# modules
+dist
+node_modules
+
+# evairiment
+.env

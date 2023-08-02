@@ -1,0 +1,3 @@
+// iniciar server no terminal
+sudo service mongod start
+mongosh
