@@ -12,14 +12,14 @@ const newTest: any = async (req: Request, res: Response) => {
     try {
         const userFirebase = await createUserFirebase(emailUser, password);
         const test: any = new user({
-            uid: userFirebase.usar?.uid,
-            nameUser: userFirebase.usar?.displayName,
-            emailUser: userFirebase.usar?.email,
+            uid: userFirebase.uid,
+            // nameUser: userFirebase.usar?.displayName,
+            emailUser: userFirebase.email,
             password: req.body.password,
             photoUrl,
         });
         await test.save();
-        return res.status(201).json(test);
+        return res.status(201).json(userFirebase);
     } catch (error) {
         return res.status(500).json(error);
     }
