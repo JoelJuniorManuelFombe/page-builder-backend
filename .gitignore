@@ -4,3 +4,6 @@ node_modules
 
 # evairiment
 .env
+
+# pnpm
+pnpm-lock.yaml

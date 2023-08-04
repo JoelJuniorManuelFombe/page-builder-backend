@@ -1,18 +1,20 @@
 import { Schema, model } from "mongoose";
 
-
-const Project = new Schema ({
-    projectName: {
-        type: String,
-        required: true
+const Project = new Schema(
+    {
+        projectName: {
+            type: String,
+            required: true,
+        },
+        userId: {
+            type: Schema.Types.ObjectId,
+            ref: "users",
+            required: true,
+        },
     },
-    userId: {
-        type: Schema.Types.ObjectId,
-        ref: 'users',
-        required: true,
-    }
-}, {timestamps: true})
+    { timestamps: true }
+);
 
-const project = model('projects', Project);
+const project = model("projects", Project);
 
-export { project }
+export { project };

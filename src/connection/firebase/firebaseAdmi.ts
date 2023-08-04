@@ -6,6 +6,4 @@ admin.initializeApp({
 	databaseURL: "https://page-builder-572dd-default-rtdb.firebaseio.com",
 });
 
-
-
 export const adminAuth = admin.auth()

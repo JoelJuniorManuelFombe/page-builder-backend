@@ -8,6 +8,7 @@ import {
     getUsers,
     newUser,
     updateUser,
+    newTest
 } from "../controllers/user";
 
 // project
@@ -27,6 +28,7 @@ import {
     newPage,
     updatePage,
 } from "../controllers/page";
+import { AuthGuard } from "../guards/Auth.guard";
 
 // instanc
 const router = express.Router();
@@ -38,24 +40,25 @@ router.get("/", (req, res) => {
 });
 
 // user
+router.post('/api/test', newTest)
 router.post("/api/users", newUser);
-router.get("/api/users", getUsers);
-router.get("/api/user/:_id", getUserById);
-router.delete("/api/user/:_id", deleteUserById);
+router.get("/api/users",AuthGuard, getUsers);
+router.get("/api/user/:_id",AuthGuard, getUserById);
+router.delete("/api/user/:_id",AuthGuard, deleteUserById);
 router.patch("/api/user/:_id", updateUser);
 
 // project
-router.post("/api/projects", newProject);
-router.get("/api/projects", getProjects);
-router.get("/api/project/:_id", getProjectById);
-router.delete("/api/project/:_id", deleteProjectById);
-router.patch("/api/project/:_id", updateProject);
+router.post("/api/projects",AuthGuard, newProject);
+router.get("/api/projects",AuthGuard, getProjects);
+router.get("/api/project/:_id",AuthGuard, getProjectById);
+router.delete("/api/project/:_id",AuthGuard, deleteProjectById);
+router.patch("/api/project/:_id",AuthGuard, updateProject);
 
 // page
-router.post("/api/pages", newPage);
-router.get("/apit/pages", getPages);
-router.get("/api/page/:_id", getPageById);
-router.delete("/api/page/:_id", deletePageById);
-router.patch("/api/page/:_id", updatePage);
+router.post("/api/pages",AuthGuard, newPage);
+router.get("/apit/pages",AuthGuard, getPages);
+router.get("/api/page/:_id",AuthGuard, getPageById);
+router.delete("/api/page/:_id",AuthGuard, deletePageById);
+router.patch("/api/page/:_id",AuthGuard, updatePage);
 
 export default router;

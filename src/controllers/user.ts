@@ -1,7 +1,30 @@
 // import
 import { user } from "../models/user";
+import { Request, Response } from "express";
+import { createUserFirebase } from "../services/user";
+createUserFirebase;
+
+// TODO: Fix bug on create new user
 
 // new
+const newTest: any = async (req: Request, res: Response) => {
+    const { uid, nameUser, emailUser, password, photoUrl } = req.body;
+    try {
+        const userFirebase = await createUserFirebase(emailUser, password);
+        const test: any = new user({
+            uid: userFirebase.usar?.uid,
+            nameUser: userFirebase.usar?.displayName,
+            emailUser: userFirebase.usar?.email,
+            password: req.body.password,
+            photoUrl,
+        });
+        await test.save();
+        return res.status(201).json(test);
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+};
+
 const newUser = async (req, res) => {
     try {
         const User: any = new user({
@@ -60,4 +83,4 @@ const updateUser = async (req, res) => {
     }
 };
 
-export { newUser, getUsers, getUserById, deleteUserById, updateUser };
+export { newUser, getUsers, getUserById, deleteUserById, updateUser, newTest };
